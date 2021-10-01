@@ -27,7 +27,7 @@ Nodo* estadoA(char cad[]){
 	fflush(stdout);
 	fflush(stdin);
 	printf("\nEstado A: ");
-	Nodo *nodo = (Nodo *) malloc (sizeof(Nodo *));
+	Nodo *nodo = (Nodo *) malloc (sizeof(Nodo *)*4);
 
 	int tamCad = strlen(cad);			//Medimos el tamaño de la cadena principal
 	char cadEnv[20];
@@ -61,7 +61,7 @@ Nodo* estadoB(char cad[]){
 	fflush(stdout);
 	fflush(stdin);
 	printf("\nEstado B: ");
-	Nodo *nodo = (Nodo *) malloc (sizeof(Nodo *));
+	Nodo *nodo = (Nodo *) malloc (sizeof(Nodo *)*4);
 
 	int tamCad = strlen(cad);			//Medimos el tamaño de la cadena principal
 	char cadEnv[20];
@@ -95,12 +95,12 @@ Nodo* estadoC(char cad[]){
 	fflush(stdout);
 	fflush(stdin);
 	printf("\nEstado C: ");
-	Nodo* nodo= (Nodo *) malloc (sizeof(Nodo *));
+	Nodo* nodo= (Nodo *) malloc (sizeof(Nodo *)*4);
 	
 	if(cad[0]=='('){
 		char cadEnv[100];
-		Nodo* nodoD=  (Nodo *) malloc (sizeof(Nodo *));
-		Nodo* nodoI=  (Nodo *) malloc (sizeof(Nodo *));
+		Nodo* nodoD=  (Nodo *) malloc (sizeof(Nodo *)*4);
+		Nodo* nodoI=  (Nodo *) malloc (sizeof(Nodo *)*4);
 		
 		nodoD->izq=nodoI->der=NULL;
 		nodoD->cen=nodoI->der=NULL;
