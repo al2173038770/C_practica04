@@ -26,7 +26,7 @@ int main(){
 Nodo* estadoA(char cad[]){ 
 	fflush(stdout); 
 	fflush(stdin); 
-	printf("\nEstado A: "); 
+	printf("\nEstado A:"); 
 	Nodo *nodo = (Nodo *) malloc (sizeof(Nodo *)*4); 
  
 	int tamCad = strlen(cad);			//Medimos el tamaño de la cadena principal 
@@ -60,7 +60,7 @@ Nodo* estadoA(char cad[]){
 Nodo* estadoB(char cad[]){ 
 	fflush(stdout); 
 	fflush(stdin); 
-	printf("\nEstado B: "); 
+	printf("\nEstado B:"); 
 	Nodo *nodo = (Nodo *) malloc (sizeof(Nodo *)*4); 
  
 	int tamCad = strlen(cad);			//Medimos el tamaño de la cadena principal 
@@ -71,7 +71,7 @@ Nodo* estadoB(char cad[]){
  
 	int tamTokenA=strlen(tokenA);		//Medimos el tamaño de la cadena con token 
  
-	if(tamCad==tamTokenA){				//Si son del mismo tamaño significa que no existe el signo '+' 
+    if(tamCad==tamTokenA){				//Si son del mismo tamaño significa que no existe el signo '+' 
 		strcpy(nodo->valor,"<unit>");	//Po lo tanto enviamos toda la cadena directamente a B 
 		nodo->der=NULL; 
 		nodo->cen=estadoC(cad); 
@@ -94,8 +94,10 @@ Nodo* estadoB(char cad[]){
 Nodo* estadoC(char cad[]){ 
 	fflush(stdout); 
 	fflush(stdin); 
-	printf("\nEstado C: "); 
+	printf("\nEstado C:"); 
 	Nodo* nodo= (Nodo *) malloc (sizeof(Nodo *)*4); 
+ 
+    char *tokenP;					//Separamos la parte de adentro de los parentecis de la cadena 
  
 	if(cad[0]=='('){ 
 		char cadEnv[100]; 
@@ -108,10 +110,8 @@ Nodo* estadoC(char cad[]){
 		strcpy(nodoI->valor,"("); 
 		strcpy(nodoD->valor,")"); 
  
-		char *tokenP;					//Separamos la parte de adentro de los parentecis de la cadena 
- 
-		tokenP=strtok(cad,"("); 
-		tokenP=strtok(tokenP,")"); 
+        tokenP=strtok(cad,")"); 
+        tokenP=strtok(tokenP,"("); 
  
 		nodo->izq = nodoI; 
 		nodo->der = nodoD; 
@@ -126,7 +126,9 @@ Nodo* estadoC(char cad[]){
 		nodo->cen=NULL; 
 		nodo->der=NULL; 
 		nodo->izq=NULL; 
-		strcpy(nodo->valor,cad);		//Agragamos la cadena 
-	} 
+        tokenP=strtok(cad,")");         //Salva 
+		strcpy(nodo->valor,tokenP);		//Agragamos la cadena 
+	    printf("\nvalor raiz: %s", nodo->valor); 
+    } 
 	return nodo; 
 }
